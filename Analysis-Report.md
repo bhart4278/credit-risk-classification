@@ -1,27 +1,56 @@
-# Module 12 Report Template
+## Credit Risk Classification Report
 
-## Overview of the Analysis
+Utilize supervised machine learning to evaluate a lending activity dataset and predict risk level.
 
-In this section, describe the analysis you completed for the machine learning models used in this Challenge. This might include:
+### Overview of the Analysis
 
-* Explain the purpose of the analysis.
-* Explain what financial information the data was on, and what you needed to predict.
-* Provide basic information about the variables you were trying to predict (e.g., `value_counts`).
-* Describe the stages of the machine learning process you went through as part of this analysis.
-* Briefly touch on any methods you used (e.g., `LogisticRegression`, or any other algorithms).
+The purpose of this analysis was to build a supervised machine learning model to predict whether a loan is classified as healthy or high-risk. The dataset used contained financial information such as loan amount, interest rate, borrower income, debt levels, and other relevant financial indicators. The dataset was imbalanced, with significantly fewer high-risk loans compared to healthy loans.
 
-## Results
+To perform the machine learning process, the data was:
 
-Using bulleted lists, describe the accuracy scores and the precision and recall scores of all machine learning models.
+- Split into labels (loan status: healthy or high-risk) and features (financial variables).
+- Further split into training and testing datasets.
+- Processed using a `LogisticRegression` model from scikit-learn with a max iteration value of 500.
+- Model fit to the training data
+- Used test data to make model predictions.
+- Evaluated using accuracy, precision, recall, balanced accuracy, and f1 scores.
 
-* Machine Learning Model 1:
-    * Description of Model 1 Accuracy, Precision, and Recall scores.
+### Results
 
-## Summary
+#### Logistic Regression Model
 
-Summarize the results of the machine learning models, and include a recommendation on the model to use, if any. For example:
+- **Accuracy**: 99%
+- **Balanced Accuracy**: 96.73%
+- **Precision**:
+  - Healthy Loans (0): 100%
+  - High-Risk Loans(1): 84%
+- **Recall**:
+  - Healthy Loans(0): 99%
+  - High-Risk Loans(1): 94%
 
-* Which one seems to perform best? How do you know it performs best?
-* Does performance depend on the problem we are trying to solve? (For example, is it more important to predict the `1`'s, or predict the `0`'s? )
+### Summary
 
-If you do not recommend any of the models, please justify your reasoning.
+The Logistic Regression model provides strong predictive performance for classifying healthy loans. However, misclassification of high-risk loans as healthy remains a concern, given the potential financial implications.
+
+Key Observations:
+
+- The model predicts  healthy loans with 100% accuracy, risky loans with 84%.
+- Due to the imbalanced nature of the dataset (very little high risk behavior in dataset), the model may underperform in identifying high-risk loans.
+- Adjusting the dataset by balancing the number of high-risk and healthy loans or experimenting with different machine learning models could enhance the model's ability to identify high-risk loans more accurately.
+
+### Model Pros and Cons
+
+**Pros:**
+
+- High accuracy in classifying healthy loans.
+- Efficient and computationally inexpensive model.
+- Suitable for binary classification problems.
+
+**Cons:**
+
+- Imbalanced dataset leads to fewer high-risk loan samples for training.
+- Potential misclassification of high-risk loans as healthy.
+- Lack of probability-based outputs for loans near decision boundaries.
+
+If this model were applied to real-world loan approvals, additional data on high-risk loans or alternative modeling approaches might be necessary to mitigate risks effectively. Reducing false negatives (misclassified high-risk loans) is crucial to minimizing financial risk.
+
